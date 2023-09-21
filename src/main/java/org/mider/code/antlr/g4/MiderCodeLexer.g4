@@ -159,7 +159,7 @@ Xor: '^';
 JugdeEqual: '==';
 JugdeNotEqual: '!=';
 
-Integer: (Plus | Minus)? [0-9]+;
+Integer: [0-9]+;
 Float: (Plus | Minus) [0-9]+ '.' [0-9]+;
 SymbolID: [A-Za-z_][A-Za-z_0-9]*;
 

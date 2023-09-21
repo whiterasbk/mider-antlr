@@ -106,17 +106,19 @@ functionBody
     ;
 
 expression
-    : Integer
+    : ParenthesesLeft expression ParenthesesRight
+    | Integer
     | SymbolID
     | TrueKeyWord
     | FalseKeyWord
     | NullKeyWord
     | Float
     | Not expression
+    | Add expression
+    | Sub expression
     | expression (Mul | Div | Mod) expression
     | expression (Add | Sub) expression
     | expression (And | Or | Xor) expression
-    | ParenthesesLeft expression ParenthesesRight
     | functionCall
     ;
 
