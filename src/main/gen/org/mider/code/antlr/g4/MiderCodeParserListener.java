@@ -18,123 +18,89 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 */
 	void exitTrack(MiderCodeParser.TrackContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MiderCodeParser#midercode}.
+	 * Enter a parse tree produced by the {@code noteExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void enterMidercode(MiderCodeParser.MidercodeContext ctx);
+	void enterNoteExperssion(MiderCodeParser.NoteExperssionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MiderCodeParser#midercode}.
+	 * Exit a parse tree produced by the {@code noteExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void exitMidercode(MiderCodeParser.MidercodeContext ctx);
+	void exitNoteExperssion(MiderCodeParser.NoteExperssionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code note_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Enter a parse tree produced by the {@code chordExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void enterNote_expr(MiderCodeParser.Note_exprContext ctx);
+	void enterChordExperssion(MiderCodeParser.ChordExperssionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code note_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Exit a parse tree produced by the {@code chordExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void exitNote_expr(MiderCodeParser.Note_exprContext ctx);
+	void exitChordExperssion(MiderCodeParser.ChordExperssionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code chord_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Enter a parse tree produced by the {@code restExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void enterChord_expr(MiderCodeParser.Chord_exprContext ctx);
+	void enterRestExperssion(MiderCodeParser.RestExperssionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code chord_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Exit a parse tree produced by the {@code restExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void exitChord_expr(MiderCodeParser.Chord_exprContext ctx);
+	void exitRestExperssion(MiderCodeParser.RestExperssionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code rest_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Enter a parse tree produced by the {@code tupletExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void enterRest_expr(MiderCodeParser.Rest_exprContext ctx);
+	void enterTupletExperssion(MiderCodeParser.TupletExperssionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code rest_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Exit a parse tree produced by the {@code tupletExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void exitRest_expr(MiderCodeParser.Rest_exprContext ctx);
+	void exitTupletExperssion(MiderCodeParser.TupletExperssionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code tuplet_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Enter a parse tree produced by the {@code glissandoExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void enterTuplet_expr(MiderCodeParser.Tuplet_exprContext ctx);
+	void enterGlissandoExperssion(MiderCodeParser.GlissandoExperssionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code tuplet_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Exit a parse tree produced by the {@code glissandoExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void exitTuplet_expr(MiderCodeParser.Tuplet_exprContext ctx);
+	void exitGlissandoExperssion(MiderCodeParser.GlissandoExperssionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code glissando_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Enter a parse tree produced by the {@code appoggiaturaExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void enterGlissando_expr(MiderCodeParser.Glissando_exprContext ctx);
+	void enterAppoggiaturaExperssion(MiderCodeParser.AppoggiaturaExperssionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code glissando_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Exit a parse tree produced by the {@code appoggiaturaExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void exitGlissando_expr(MiderCodeParser.Glissando_exprContext ctx);
+	void exitAppoggiaturaExperssion(MiderCodeParser.AppoggiaturaExperssionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code appoggiatura_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Enter a parse tree produced by the {@code commentExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void enterAppoggiatura_expr(MiderCodeParser.Appoggiatura_exprContext ctx);
+	void enterCommentExperssion(MiderCodeParser.CommentExperssionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code appoggiatura_expr}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
+	 * Exit a parse tree produced by the {@code commentExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
 	 */
-	void exitAppoggiatura_expr(MiderCodeParser.Appoggiatura_exprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code clone_action_exper}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterClone_action_exper(MiderCodeParser.Clone_action_experContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code clone_action_exper}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitClone_action_exper(MiderCodeParser.Clone_action_experContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code lyric_exper}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterLyric_exper(MiderCodeParser.Lyric_experContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code lyric_exper}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitLyric_exper(MiderCodeParser.Lyric_experContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code a_comment}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterA_comment(MiderCodeParser.A_commentContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code a_comment}
-	 * labeled alternative in {@link MiderCodeParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitA_comment(MiderCodeParser.A_commentContext ctx);
+	void exitCommentExperssion(MiderCodeParser.CommentExperssionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#note}.
 	 * @param ctx the parse tree
@@ -196,45 +162,35 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 */
 	void exitAppoggiatura(MiderCodeParser.AppoggiaturaContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MiderCodeParser#midercode_has_duration}.
+	 * Enter a parse tree produced by {@link MiderCodeParser#restBase}.
 	 * @param ctx the parse tree
 	 */
-	void enterMidercode_has_duration(MiderCodeParser.Midercode_has_durationContext ctx);
+	void enterRestBase(MiderCodeParser.RestBaseContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MiderCodeParser#midercode_has_duration}.
+	 * Exit a parse tree produced by {@link MiderCodeParser#restBase}.
 	 * @param ctx the parse tree
 	 */
-	void exitMidercode_has_duration(MiderCodeParser.Midercode_has_durationContext ctx);
+	void exitRestBase(MiderCodeParser.RestBaseContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MiderCodeParser#midercode_has_pitch}.
+	 * Enter a parse tree produced by {@link MiderCodeParser#noteBase}.
 	 * @param ctx the parse tree
 	 */
-	void enterMidercode_has_pitch(MiderCodeParser.Midercode_has_pitchContext ctx);
+	void enterNoteBase(MiderCodeParser.NoteBaseContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MiderCodeParser#midercode_has_pitch}.
+	 * Exit a parse tree produced by {@link MiderCodeParser#noteBase}.
 	 * @param ctx the parse tree
 	 */
-	void exitMidercode_has_pitch(MiderCodeParser.Midercode_has_pitchContext ctx);
+	void exitNoteBase(MiderCodeParser.NoteBaseContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MiderCodeParser#clone_action_suffix}.
+	 * Enter a parse tree produced by {@link MiderCodeParser#chordTailBase}.
 	 * @param ctx the parse tree
 	 */
-	void enterClone_action_suffix(MiderCodeParser.Clone_action_suffixContext ctx);
+	void enterChordTailBase(MiderCodeParser.ChordTailBaseContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MiderCodeParser#clone_action_suffix}.
+	 * Exit a parse tree produced by {@link MiderCodeParser#chordTailBase}.
 	 * @param ctx the parse tree
 	 */
-	void exitClone_action_suffix(MiderCodeParser.Clone_action_suffixContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MiderCodeParser#with_lyric}.
-	 * @param ctx the parse tree
-	 */
-	void enterWith_lyric(MiderCodeParser.With_lyricContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiderCodeParser#with_lyric}.
-	 * @param ctx the parse tree
-	 */
-	void exitWith_lyric(MiderCodeParser.With_lyricContext ctx);
+	void exitChordTailBase(MiderCodeParser.ChordTailBaseContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#comment}.
 	 * @param ctx the parse tree
@@ -245,4 +201,210 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComment(MiderCodeParser.CommentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#lyric}.
+	 * @param ctx the parse tree
+	 */
+	void enterLyric(MiderCodeParser.LyricContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#lyric}.
+	 * @param ctx the parse tree
+	 */
+	void exitLyric(MiderCodeParser.LyricContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackHeader}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackHeader(MiderCodeParser.TrackHeaderContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackHeader}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackHeader(MiderCodeParser.TrackHeaderContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#sigleTrackConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterSigleTrackConfig(MiderCodeParser.SigleTrackConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#sigleTrackConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitSigleTrackConfig(MiderCodeParser.SigleTrackConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackBpmConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackBpmConfig(MiderCodeParser.TrackBpmConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackBpmConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackBpmConfig(MiderCodeParser.TrackBpmConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackOctaveAndDurationConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackOctaveAndDurationConfig(MiderCodeParser.TrackOctaveAndDurationConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackOctaveAndDurationConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackOctaveAndDurationConfig(MiderCodeParser.TrackOctaveAndDurationConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackSpeedConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackSpeedConfig(MiderCodeParser.TrackSpeedConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackSpeedConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackSpeedConfig(MiderCodeParser.TrackSpeedConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackTonalityConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackTonalityConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackVelocityConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackVelocityConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackInstrumentConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackInstrumentConfig(MiderCodeParser.TrackInstrumentConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackInstrumentConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackInstrumentConfig(MiderCodeParser.TrackInstrumentConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackCustomConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackCustomConfig(MiderCodeParser.TrackCustomConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackCustomConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackCustomConfig(MiderCodeParser.TrackCustomConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#program}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgram(MiderCodeParser.ProgramContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#program}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgram(MiderCodeParser.ProgramContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#programBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgramBody(MiderCodeParser.ProgramBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#programBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgramBody(MiderCodeParser.ProgramBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code defineStatement}
+	 * labeled alternative in {@link MiderCodeParser#programStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefineStatement(MiderCodeParser.DefineStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code defineStatement}
+	 * labeled alternative in {@link MiderCodeParser#programStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefineStatement(MiderCodeParser.DefineStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code assignEqualStatement}
+	 * labeled alternative in {@link MiderCodeParser#programStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignEqualStatement(MiderCodeParser.AssignEqualStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assignEqualStatement}
+	 * labeled alternative in {@link MiderCodeParser#programStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignEqualStatement(MiderCodeParser.AssignEqualStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code loopStatement}
+	 * labeled alternative in {@link MiderCodeParser#programStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterLoopStatement(MiderCodeParser.LoopStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code loopStatement}
+	 * labeled alternative in {@link MiderCodeParser#programStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitLoopStatement(MiderCodeParser.LoopStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#functionDef}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionDef(MiderCodeParser.FunctionDefContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#functionDef}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionDef(MiderCodeParser.FunctionDefContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#functionDefParamList}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionDefParamList(MiderCodeParser.FunctionDefParamListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#functionDefParamList}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionDefParamList(MiderCodeParser.FunctionDefParamListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(MiderCodeParser.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(MiderCodeParser.FunctionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionBody(MiderCodeParser.FunctionBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionBody(MiderCodeParser.FunctionBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression(MiderCodeParser.ExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression(MiderCodeParser.ExpressionContext ctx);
 }

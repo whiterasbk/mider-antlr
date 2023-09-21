@@ -3,38 +3,121 @@ parser grammar MiderCodeParser;
 
 options { tokenVocab = MiderCodeLexer; }
 
-track: TrackHead? midercode;
+// track: trackHeader? (midercode | program)+ EOF;
+track: (trackHeader | midercode | program)+ EOF;
 
-midercode: expr+;
-
-expr
-    : note                     # note_expr
-    | chord                    # chord_expr
-    | rest                     # rest_expr
-    | tuplet                   # tuplet_expr
-    | glissando                # glissando_expr
-    | appoggiatura             # appoggiatura_expr
-    | clone_action_suffix      # clone_action_exper
-    | with_lyric               # lyric_exper
-    | comment                  # a_comment
+midercode
+    : note lyric?              # noteExperssion
+    | chord lyric?             # chordExperssion
+    | rest                     # restExperssion
+    | tuplet                   # tupletExperssion
+    | glissando                # glissandoExperssion
+    | appoggiatura             # appoggiaturaExperssion
+    | comment                  # commentExperssion
     ;
 
-note: (PitchPrefix)* NoteName (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix | RepeatSuffix | PitchSuffix)* ;
-chord: note (ChordConnector note ) + (ArpeggioSuffix)?;
-rest: (RestNote) DurationSuffix* ;
+note
+    : (PitchPrefix)* NoteName (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix | RepeatSuffix | PitchSuffix)*
+    | note noteBase+? // todo fix: if this branch attached, must be tarck -> midercode -> note -> noteBase, else error
+    ;
+chord
+    : note (ChordConnector note) + (ArpeggioSuffix)?
+    | note (ChordConnector (note | chordTailBase)) + (ArpeggioSuffix)?
+    // | chord noteListBase+ // unreachable
+    ;
+rest
+    : (RestNote) DurationSuffix*
+    | rest restBase+
+    ;
 tuplet
-    : note (TupletConnector note) +
-    | rest (TupletConnector rest) +
+    : note (TupletConnector note)+
+    | rest (TupletConnector rest)+
+    // | tuplet noteListBase+ // unreachable
     ;
-glissando: note (GlissandoConnector note ) + ;
-appoggiatura: note (AppoggiaturaConnector note ) + AppoggiaturaTail? ;
-
-midercode_has_duration: (note | chord | rest | tuplet | glissando | appoggiatura);
-midercode_has_pitch: (note | chord | tuplet | glissando | appoggiatura);
-clone_action_suffix
-    : midercode_has_duration CloneActionOperator +
-    | midercode_has_pitch (CloneActionOperator | CloneAndModifyPitchOperator) +
+glissando
+    : note (GlissandoConnector note)+
+    // | glissando noteListBase+ // unreachable
+    ;
+appoggiatura
+    : note AppoggiaturaConnector note Ttail?
+    // | appoggiatura noteListBase+ // unreachable
     ;
 
-with_lyric: (note | chord) Lyric ;
+restBase: Clone (RepeatSuffix | DurationSuffix)+;
+noteBase: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | RepeatSuffix | DurationSuffix | VelocitySuffix | PitchSuffix)*;
+chordTailBase: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix | PitchSuffix)*;
+// noteListBase: CloneActionOperator (RepeatSuffix | DurationSuffix | VelocitySuffix | OctaveSuffix)*; // unreachable
+
 comment: Comment;
+
+// lyric
+lyric: LyricStart LyricContent LyricEnd;
+
+// region track
+trackHeader: TrackStart sigleTrackConfig (TrackConfigSeperator sigleTrackConfig)*? TrackEnd;
+sigleTrackConfig
+    : trackBpmConfig
+    | trackOctaveAndDurationConfig
+    | trackSpeedConfig
+    | trackTonalityConfig
+    | trackVelocityConfig
+    | trackInstrumentConfig
+    | trackCustomConfig
+    ;
+
+trackBpmConfig: TrackBPMInteger;
+trackOctaveAndDurationConfig: (TrackTreble | TrackBass) (TrackOcatve | TrackDuration)*?;
+trackSpeedConfig: TrackSpeed;
+trackTonalityConfig: TrackTonality;
+trackVelocityConfig: TrackVelocity;
+trackInstrumentConfig: TrackUseInstrumnt;
+trackCustomConfig: TrackPair;
+// endregion
+
+// region program
+program: ProgramStart programBody* ProgramEnd;
+
+programBody
+    : programStatement
+    | functionDef
+    | expression
+    ;
+
+programStatement
+    : LetKeyWord SymbolID AssignEqual expression                          # defineStatement
+    | SymbolID AssignEqual expression                                     # assignEqualStatement
+    | LoopKeyWord expression? BracesLeft programBody? BracesRight         # loopStatement
+    ;
+
+functionDef
+    : FunctionDefKeyWord SymbolID ParenthesesLeft functionDefParamList? ParenthesesRight BracesLeft functionBody? BracesRight
+    ;
+
+functionDefParamList
+    : SymbolID (ProgramComma SymbolID)*
+    ;
+
+functionCall
+    : SymbolID ParenthesesLeft (expression (ProgramComma expression)*)?  ParenthesesRight
+    ;
+
+functionBody
+    : programBody+
+    ;
+
+expression
+    : Integer
+    | SymbolID
+    | TrueKeyWord
+    | FalseKeyWord
+    | NullKeyWord
+    | Float
+    | Not expression
+    | expression (Mul | Div | Mod) expression
+    | expression (Add | Sub) expression
+    | expression (And | Or | Xor) expression
+    | ParenthesesLeft expression ParenthesesRight
+    | functionCall
+    ;
+
+// endregion

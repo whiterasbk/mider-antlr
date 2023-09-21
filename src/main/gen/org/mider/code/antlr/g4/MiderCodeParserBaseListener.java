@@ -29,121 +29,85 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMidercode(MiderCodeParser.MidercodeContext ctx) { }
+	@Override public void enterNoteExperssion(MiderCodeParser.NoteExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMidercode(MiderCodeParser.MidercodeContext ctx) { }
+	@Override public void exitNoteExperssion(MiderCodeParser.NoteExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNote_expr(MiderCodeParser.Note_exprContext ctx) { }
+	@Override public void enterChordExperssion(MiderCodeParser.ChordExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNote_expr(MiderCodeParser.Note_exprContext ctx) { }
+	@Override public void exitChordExperssion(MiderCodeParser.ChordExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterChord_expr(MiderCodeParser.Chord_exprContext ctx) { }
+	@Override public void enterRestExperssion(MiderCodeParser.RestExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitChord_expr(MiderCodeParser.Chord_exprContext ctx) { }
+	@Override public void exitRestExperssion(MiderCodeParser.RestExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRest_expr(MiderCodeParser.Rest_exprContext ctx) { }
+	@Override public void enterTupletExperssion(MiderCodeParser.TupletExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRest_expr(MiderCodeParser.Rest_exprContext ctx) { }
+	@Override public void exitTupletExperssion(MiderCodeParser.TupletExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTuplet_expr(MiderCodeParser.Tuplet_exprContext ctx) { }
+	@Override public void enterGlissandoExperssion(MiderCodeParser.GlissandoExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTuplet_expr(MiderCodeParser.Tuplet_exprContext ctx) { }
+	@Override public void exitGlissandoExperssion(MiderCodeParser.GlissandoExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGlissando_expr(MiderCodeParser.Glissando_exprContext ctx) { }
+	@Override public void enterAppoggiaturaExperssion(MiderCodeParser.AppoggiaturaExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGlissando_expr(MiderCodeParser.Glissando_exprContext ctx) { }
+	@Override public void exitAppoggiaturaExperssion(MiderCodeParser.AppoggiaturaExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAppoggiatura_expr(MiderCodeParser.Appoggiatura_exprContext ctx) { }
+	@Override public void enterCommentExperssion(MiderCodeParser.CommentExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAppoggiatura_expr(MiderCodeParser.Appoggiatura_exprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterClone_action_exper(MiderCodeParser.Clone_action_experContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitClone_action_exper(MiderCodeParser.Clone_action_experContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLyric_exper(MiderCodeParser.Lyric_experContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLyric_exper(MiderCodeParser.Lyric_experContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterA_comment(MiderCodeParser.A_commentContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitA_comment(MiderCodeParser.A_commentContext ctx) { }
+	@Override public void exitCommentExperssion(MiderCodeParser.CommentExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -221,49 +185,37 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMidercode_has_duration(MiderCodeParser.Midercode_has_durationContext ctx) { }
+	@Override public void enterRestBase(MiderCodeParser.RestBaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMidercode_has_duration(MiderCodeParser.Midercode_has_durationContext ctx) { }
+	@Override public void exitRestBase(MiderCodeParser.RestBaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMidercode_has_pitch(MiderCodeParser.Midercode_has_pitchContext ctx) { }
+	@Override public void enterNoteBase(MiderCodeParser.NoteBaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMidercode_has_pitch(MiderCodeParser.Midercode_has_pitchContext ctx) { }
+	@Override public void exitNoteBase(MiderCodeParser.NoteBaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClone_action_suffix(MiderCodeParser.Clone_action_suffixContext ctx) { }
+	@Override public void enterChordTailBase(MiderCodeParser.ChordTailBaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClone_action_suffix(MiderCodeParser.Clone_action_suffixContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterWith_lyric(MiderCodeParser.With_lyricContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitWith_lyric(MiderCodeParser.With_lyricContext ctx) { }
+	@Override public void exitChordTailBase(MiderCodeParser.ChordTailBaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -276,6 +228,246 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitComment(MiderCodeParser.CommentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLyric(MiderCodeParser.LyricContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLyric(MiderCodeParser.LyricContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackHeader(MiderCodeParser.TrackHeaderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackHeader(MiderCodeParser.TrackHeaderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSigleTrackConfig(MiderCodeParser.SigleTrackConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSigleTrackConfig(MiderCodeParser.SigleTrackConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackBpmConfig(MiderCodeParser.TrackBpmConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackBpmConfig(MiderCodeParser.TrackBpmConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackOctaveAndDurationConfig(MiderCodeParser.TrackOctaveAndDurationConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackOctaveAndDurationConfig(MiderCodeParser.TrackOctaveAndDurationConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackSpeedConfig(MiderCodeParser.TrackSpeedConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackSpeedConfig(MiderCodeParser.TrackSpeedConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackInstrumentConfig(MiderCodeParser.TrackInstrumentConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackInstrumentConfig(MiderCodeParser.TrackInstrumentConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackCustomConfig(MiderCodeParser.TrackCustomConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackCustomConfig(MiderCodeParser.TrackCustomConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterProgram(MiderCodeParser.ProgramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitProgram(MiderCodeParser.ProgramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterProgramBody(MiderCodeParser.ProgramBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitProgramBody(MiderCodeParser.ProgramBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDefineStatement(MiderCodeParser.DefineStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDefineStatement(MiderCodeParser.DefineStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssignEqualStatement(MiderCodeParser.AssignEqualStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignEqualStatement(MiderCodeParser.AssignEqualStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLoopStatement(MiderCodeParser.LoopStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLoopStatement(MiderCodeParser.LoopStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionDef(MiderCodeParser.FunctionDefContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionDef(MiderCodeParser.FunctionDefContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionDefParamList(MiderCodeParser.FunctionDefParamListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionDefParamList(MiderCodeParser.FunctionDefParamListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionCall(MiderCodeParser.FunctionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionCall(MiderCodeParser.FunctionCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionBody(MiderCodeParser.FunctionBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionBody(MiderCodeParser.FunctionBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpression(MiderCodeParser.ExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpression(MiderCodeParser.ExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

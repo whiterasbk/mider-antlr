@@ -1,85 +1,167 @@
 lexer grammar MiderCodeLexer;
 
-// track
-TrackScopeSymbol: '>';
-fragment TrackTreble: 'g';
-fragment TrackBass: 'f';
-fragment TrackConfigSeperator: ';';
+// sign
+fragment Tilde: '~'; // CloneActionOperator
+fragment Greater: '>';
+fragment Lesser: '<';
+fragment Apostrophe: '\'';
+fragment MiderAnd: '&'; // TupletConnector
+fragment Comma: ';'; // Appoggiatura Connector
+fragment Colon: ':'; // ChordConnector
+fragment Equal: '='; // ArpeggioConnector
+fragment ApproximatelyEqual: '≈'; // ArpeggioConnector
+fragment Hash: '#'; // PitchModifier
+fragment Dot: '.'; // DurationModifier
+fragment Slash: '/'; // DurationModifier
+fragment Plus: '+'; // DurationModifier
+fragment Minus: '-'; // DurationModifier
+fragment Star: '*'; // RepeatModifier
+fragment Doller: '$'; // PitchModifier
+fragment At: '@'; // PitchModifier
+fragment Percent: '%';
+fragment MiderOr: '|';
 
-// track config
-fragment TrackBPMConfig: SingleDigital+;
-fragment TrackOctaveConfig: (TrackTreble | TrackBass) OctaveSuffix?;
-fragment TrackSpeedConfig: SingleDigital+ ('x' | 'X');
-fragment TrackInstrumentConfig: 'i' Whitespace* '=' Whitespace* [a-zA-Z]([a-zA-Z0-9_])*;
-
-fragment TrackSingleConfig
-    : TrackBPMConfig
-    | TrackOctaveConfig
-    | TrackSpeedConfig
-    | TrackInstrumentConfig
-    ;
-
-TrackHead
-    : TrackScopeSymbol TrackSingleConfig (TrackConfigSeperator TrackSingleConfig )* TrackScopeSymbol
-    ;
+// letter
+fragment Tl: 't';
+fragment Tu: 'T';
+fragment Xl: 'x';
+fragment Xu: 'X';
+fragment Hl: 'h';
+fragment Hu: 'H';
+fragment Ll: 'l';
+fragment Lu: 'L';
+fragment Ol: 'o';
+fragment Ou: 'O';
+fragment Il: 'i';
+fragment Iu: 'I';
+fragment Gl: 'g';
+fragment Gu: 'G';
+fragment Fl: 'f';
+fragment Fu: 'F';
 
 // connector
-ChordConnector: ':';
-TupletConnector: '&';
-GlissandoConnector: '=' | '≈';
-AppoggiaturaConnector: ';';
+GlissandoConnector: Equal | ApproximatelyEqual;
+ChordConnector: Colon;
+AppoggiaturaConnector: Comma;
+TupletConnector: MiderAnd;
 
-// suffix
-AppoggiaturaTail: 't';
+// tail
+Ttail: Tl | Tu;
 
-// prefix
+// prefix and suffix
 PitchPrefix
-    : '#' | '♯'
-    | '$' | '♭'
-    | '@' | '♮'
+    : Hash | '♯'
+    | Doller | '♭'
+    | At | '♮'
     ;
-PitchSuffix: '\'';
+PitchSuffix: Apostrophe;
 OctaveSuffix: SingleDigital;
 MoveOctaveSuffix
-    : '↓' | 'l'
-    | '↑' | 'h'
+    : '↓' | Ll | Lu
+    | '↑' | Hl | Hu
     ;
 DurationSuffix
-    : '+' +
-    | '-' +
-    | '.' +
-    | ('/' SingleDigital) +
-    | ('x' SingleDigital) +
+    : Plus +
+    | Minus +
+    | Dot +
+    | (Slash SingleDigital) +
+    | ((Xl | Xu) SingleDigital) +
     ;
-VelocitySuffix: '%' SingleDigital;
-RepeatSuffix: '*' SingleDigital;
+VelocitySuffix: Percent SingleDigital;
+RepeatSuffix: Star SingleDigital;
 ArpeggioSuffix: '↟' | '↡' | '︴';
 
-Comment: '/*'  .*  '*/'  {skip();} ;
+// ignore
+fragment NewLine: '\t\r' | '\n';
+fragment Space: ' ';
+Comment: '/*'  .*?  '*/'  {skip();};
+Blank: (Space | NewLine)+ -> skip;
+SectionLine: MiderOr -> skip;
 
-// note
-NoteName: [a-gA-G] ;
-RestNote: 'O' | 'o';
+// notatioin
+NoteName: [a-gA-G];
+RestNote: Ol | Ou;
 
 // clone
-CloneActionOperator: '~' ;
-CloneAndModifyPitchOperator: [^vmw] ;
+ModifyPitchBase: [^vmw];
+Clone: Tilde;
 
 // symbol
-SingleDigital: [0-9] ;
-//Whitespace : [| \t\r\n]+ -> skip ;
-Whitespace : ('|' | ' ' | NewLine)+ -> skip ;
-NewLine: '\t\r' | '\n';
+fragment SingleDigital: [0-9];
 
-// lyric
-fragment HexDigit
-    : [0-9a-fA-F]
-    ;
 
-fragment LyricEscapeSequence
-    : '\\' 'u005c'? 'btnfr'
-    | '\\' 'u005c'? ([0-3]? [0-7])? [0-7]
-    | '\\' 'u'+ HexDigit HexDigit HexDigit HexDigit
-    ;
-Lyric: '[' (~('[' | ']') | LyricEscapeSequence)* ']';
+// mode
+TrackStart: Greater -> pushMode(Track);
+LyricStart: '[' -> pushMode(LyricMode);
+ProgramStart: '(:' -> pushMode(Program);
 
+mode LyricMode;
+    LyricContent: ~('[' | ']')+;
+    LyricEnd: ']' -> popMode;
+
+mode Track;
+TrackTreble: Gl;
+TrackBass: Fl;
+TrackConfigSeperator: Comma;
+TrackBPMInteger: SingleDigital+;
+TrackOcatve: OctaveSuffix | MoveOctaveSuffix;
+TrackDuration: DurationSuffix;
+TrackSpeed: SingleDigital+ (Xu | Xl);
+TrackSpace: Space -> skip;
+TrackTonality: ('b' | '#')? [A-G] (('m' | 'maj' | 'major') | ('min' | 'minor'))?;
+TrackVelocity: SingleDigital+ Percent;
+TrackUseInstrumnt: 'use' Colon [a-zA-Z]([a-zA-Z0-9_])*;
+TrackPair: [a-zA-Z][a-zA-Z_0-9]* Equal [a-zA-Z_0-9]+ (Comma [a-zA-Z_0-9]+)*?;
+TrackEnd: Greater -> popMode;
+
+mode Program;
+LetKeyWord: 'let';
+LoopKeyWord: 'loop';
+InKeyWord: 'in';
+IfKeyWord: 'if';
+ElseKeyWord: 'else';
+ForKeyWord: 'for';
+WhileKeyWord: 'while';
+ReturnKeyWord: 'return';
+BreakKeyWord: 'break';
+ContinueKeyWord: 'continue';
+//ClassKeyWord: 'class';
+//NewKeyWord: 'new';//
+//ThisKeyWord: 'this';
+//SuperKeyWord: 'super';
+NullKeyWord: 'null';
+TrueKeyWord: 'true';
+FalseKeyWord: 'false';
+FunctionDefKeyWord: 'fun';
+
+ProgramComma: ',';
+AssignEqual: '=';
+AssignPlusEqual: '+=';
+AssignMinusEqual: '-=';
+AssignMulEqual: '*=';
+AssignDivEqual: '/=';
+AssignModEqual: '%=';
+BracesLeft: '{';
+BracesRight: '}';
+SqualBracesLeft: '[';
+SqualBracesRight: ']';
+ParenthesesLeft: '(';
+ParenthesesRight: ')';
+Mul: '*';
+Div: '/';
+Add: '+';
+Sub: '-';
+Mod: '%';
+Not: '!';
+And: '&';
+Or: '|';
+Xor: '^';
+JugdeEqual: '==';
+JugdeNotEqual: '!=';
+
+Integer: (Plus | Minus)? [0-9]+;
+Float: (Plus | Minus) [0-9]+ '.' [0-9]+;
+SymbolID: [A-Za-z_][A-Za-z_0-9]*;
+
+ProgramBlank: (Space | NewLine)+ -> skip;
+ProgramEnd: ':)' -> popMode;
