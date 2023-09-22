@@ -2,11 +2,13 @@ lexer grammar MiderCodeLexer;
 
 // sign
 fragment Tilde: '~'; // CloneActionOperator
-fragment Greater: '>';
-fragment Lesser: '<';
+fragment AngleBracketLeft: '<';
+fragment AngleBracketRight: '>';
 fragment Apostrophe: '\'';
 fragment MiderAnd: '&'; // TupletConnector
-fragment Comma: ';'; // Appoggiatura Connector
+fragment MiderUnderscore: '_'; // tripletsConnector
+fragment Semicolon: ';'; // Appoggiatura Connector
+fragment Comma: ',';
 fragment Colon: ':'; // ChordConnector
 fragment Equal: '='; // ArpeggioConnector
 fragment ApproximatelyEqual: '≈'; // ArpeggioConnector
@@ -38,12 +40,15 @@ fragment Gl: 'g';
 fragment Gu: 'G';
 fragment Fl: 'f';
 fragment Fu: 'F';
+fragment Cl: 'c';
+fragment Cu: 'C';
 
 // connector
 GlissandoConnector: Equal | ApproximatelyEqual;
 ChordConnector: Colon;
-AppoggiaturaConnector: Comma;
+AppoggiaturaConnector: Semicolon;
 TupletConnector: MiderAnd;
+TripletsConnector: MiderUnderscore;
 
 // tail
 Ttail: Tl | Tu;
@@ -89,11 +94,11 @@ Clone: Tilde;
 // symbol
 fragment SingleDigital: [0-9];
 
-
 // mode
-TrackStart: Greater -> pushMode(Track);
+TrackStart: AngleBracketRight -> pushMode(Track);
 LyricStart: '[' -> pushMode(LyricMode);
-ProgramStart: '(:' -> pushMode(Program);
+ProgramStart: '(=' -> pushMode(Program);
+HexStart: '`' -> pushMode(Hex);
 
 mode LyricMode;
     LyricContent: ~('[' | ']')+;
@@ -102,7 +107,8 @@ mode LyricMode;
 mode Track;
 TrackTreble: Gl;
 TrackBass: Fl;
-TrackConfigSeperator: Comma;
+TrackAlto: Cl;
+TrackConfigSeperator: Semicolon;
 TrackBPMInteger: SingleDigital+;
 TrackOcatve: OctaveSuffix | MoveOctaveSuffix;
 TrackDuration: DurationSuffix;
@@ -110,9 +116,10 @@ TrackSpeed: SingleDigital+ (Xu | Xl);
 TrackSpace: Space -> skip;
 TrackTonality: ('b' | '#')? [A-G] (('m' | 'maj' | 'major') | ('min' | 'minor'))?;
 TrackVelocity: SingleDigital+ Percent;
+TrackTimesignature: SingleDigital Slash SingleDigital;
 TrackUseInstrumnt: 'use' Colon [a-zA-Z]([a-zA-Z0-9_])*;
 TrackPair: [a-zA-Z][a-zA-Z_0-9]* Equal [a-zA-Z_0-9]+ (Comma [a-zA-Z_0-9]+)*?;
-TrackEnd: Greater -> popMode;
+TrackEnd: AngleBracketRight -> popMode;
 
 mode Program;
 LetKeyWord: 'let';
@@ -134,8 +141,17 @@ TrueKeyWord: 'true';
 FalseKeyWord: 'false';
 FunctionDefKeyWord: 'fun';
 
-ProgramComma: ',';
-AssignEqual: '=';
+LogicAnd: '&';
+LogicOr: '|';
+Caret: '^';
+AdressEqual: '===';
+Xor: '^^' | '⊕';
+And: '&&';
+Or: '||';
+JugdeNotEqual: '!=';
+JugdeEqual: '==';
+GreaterEqual: '>=';
+LesserEqual: '<=';
 AssignPlusEqual: '+=';
 AssignMinusEqual: '-=';
 AssignMulEqual: '*=';
@@ -147,21 +163,47 @@ SqualBracesLeft: '[';
 SqualBracesRight: ']';
 ParenthesesLeft: '(';
 ParenthesesRight: ')';
+ProgramComma: ';';
+ProgramColon: ':';
+ProgramSemicolon: ',';
+ProgramDot: '.';
+Greater: '>';
+Lesser: '<';
 Mul: '*';
 Div: '/';
 Add: '+';
 Sub: '-';
 Mod: '%';
 Not: '!';
-And: '&';
-Or: '|';
-Xor: '^';
-JugdeEqual: '==';
-JugdeNotEqual: '!=';
+AssignEqual: '=';
 
 Integer: [0-9]+;
-Float: (Plus | Minus) [0-9]+ '.' [0-9]+;
+Float: [0-9]+ '.' [0-9]+;
 SymbolID: [A-Za-z_][A-Za-z_0-9]*;
+String: '"' (~["\\\r\n] | StringEscapeSequence)*? '"';
 
 ProgramBlank: (Space | NewLine)+ -> skip;
-ProgramEnd: ':)' -> popMode;
+ProgramEnd: '=)' -> popMode;
+
+fragment StringEscapeSequence
+    : '\\' 'u005c'? [btnfr"'\\]
+    | '\\' 'u005c'? ([0-3]? [0-7])? [0-7]
+    | '\\' 'u'+ HexDigit HexDigit HexDigit HexDigit
+    ;
+
+fragment HexDigit
+    : [0-9a-fA-F]
+    ;
+
+
+mode Hex;
+
+PureHexContent
+    : MIDIHexDigit (Blank* MIDIHexDigit)*
+    ;
+
+HexNewLine: NewLine+ -> skip;
+
+MIDIHexDigit: HexDigit HexDigit;
+
+HexEnd: '`' -> popMode;

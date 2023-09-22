@@ -2,15 +2,16 @@
 parser grammar MiderCodeParser;
 
 options { tokenVocab = MiderCodeLexer; }
-
+// todo 简谱模式，和弦模式
 // track: trackHeader? (midercode | program)+ EOF;
-track: (trackHeader | midercode | program)+ EOF;
+track: (trackHeader | midercode | program | hexData)+ EOF;
 
 midercode
     : note lyric?              # noteExperssion
     | chord lyric?             # chordExperssion
     | rest                     # restExperssion
     | tuplet                   # tupletExperssion
+    | triplets                 # tripletsExperssion
     | glissando                # glissandoExperssion
     | appoggiatura             # appoggiaturaExperssion
     | comment                  # commentExperssion
@@ -34,6 +35,11 @@ tuplet
     | rest (TupletConnector rest)+
     // | tuplet noteListBase+ // unreachable
     ;
+
+triplets
+    : note (ChordConnector note)+
+    ;
+
 glissando
     : note (GlissandoConnector note)+
     // | glissando noteListBase+ // unreachable
@@ -42,6 +48,7 @@ appoggiatura
     : note AppoggiaturaConnector note Ttail?
     // | appoggiatura noteListBase+ // unreachable
     ;
+// todo 三连音 q 表示前一个和弦
 
 restBase: Clone (RepeatSuffix | DurationSuffix)+;
 noteBase: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | RepeatSuffix | DurationSuffix | VelocitySuffix | PitchSuffix)*;
@@ -58,6 +65,7 @@ trackHeader: TrackStart sigleTrackConfig (TrackConfigSeperator sigleTrackConfig)
 sigleTrackConfig
     : trackBpmConfig
     | trackOctaveAndDurationConfig
+    | trackTimesignatureConfig
     | trackSpeedConfig
     | trackTonalityConfig
     | trackVelocityConfig
@@ -66,19 +74,29 @@ sigleTrackConfig
     ;
 
 trackBpmConfig: TrackBPMInteger;
-trackOctaveAndDurationConfig: (TrackTreble | TrackBass) (TrackOcatve | TrackDuration)*?;
+trackOctaveAndDurationConfig: (TrackTreble | TrackBass | TrackAlto) (TrackOcatve | TrackDuration)*?;
 trackSpeedConfig: TrackSpeed;
+trackTimesignatureConfig: TrackTimesignature;
 trackTonalityConfig: TrackTonality;
 trackVelocityConfig: TrackVelocity;
 trackInstrumentConfig: TrackUseInstrumnt;
 trackCustomConfig: TrackPair;
 // endregion
 
+// region hexdata
+hexData: HexStart hexContent HexEnd;
+
+hexContent
+    : PureHexContent
+    ;
+// endregion
+
+
 // region program
 program: ProgramStart programBody* ProgramEnd;
 
 programBody
-    : programStatement
+    : programStatement ProgramComma?
     | functionDef
     | expression
     ;
@@ -94,31 +112,66 @@ functionDef
     ;
 
 functionDefParamList
-    : SymbolID (ProgramComma SymbolID)*
+    : SymbolID (ProgramSemicolon SymbolID)*
     ;
 
 functionCall
-    : SymbolID ParenthesesLeft (expression (ProgramComma expression)*)?  ParenthesesRight
+    : SymbolID ParenthesesLeft (expression (ProgramSemicolon expression)*)?  ParenthesesRight
     ;
+
+
+//hava: primary ((ProgramDot SymbolID) | (SqualBracesLeft Integer SqualBracesRight) | ParenthesesLeft (expression (ProgramSemicolon expression)*)? ParenthesesRight )* ;
+//primary: SymbolID | functionCall | ParenthesesLeft expression ParenthesesRight;
+//
+//objectGet
+//    : (SymbolID | functionCall) ProgramDot (SymbolID | functionCall) (ProgramDot SymbolID)*
+//    ;
+//
+//objectGetAndCall
+//    : (SymbolID | functionCall) (ProgramDot (SymbolID | functionCall))* ParenthesesLeft (expression (ProgramSemicolon expression)*)? ParenthesesRight
+//    ;
+//
+//listGet
+//    : SymbolID SqualBracesLeft expression SqualBracesRight (SqualBracesLeft expression SqualBracesRight)*
+//    ;
 
 functionBody
     : programBody+
     ;
 
-expression
+listBody
+    : SqualBracesLeft (expression (ProgramSemicolon expression)*)? SqualBracesRight
+    ;
+
+mapBody
+    : BracesLeft (expression ProgramColon expression (ProgramSemicolon expression ProgramColon expression)*)? BracesRight
+    ;
+
+primary
     : ParenthesesLeft expression ParenthesesRight
-    | Integer
-    | SymbolID
+    | NullKeyWord
     | TrueKeyWord
     | FalseKeyWord
-    | NullKeyWord
+    | SymbolID
+    | Integer
     | Float
+    | String
+    ;
+
+expression
+    : primary
+    | expression BracesLeft expression BracesRight
+    | expression bop='.' (SymbolID | functionCall) // todo fix
     | Not expression
     | Add expression
     | Sub expression
+    | <assoc=right> expression Caret expression
     | expression (Mul | Div | Mod) expression
     | expression (Add | Sub) expression
     | expression (And | Or | Xor) expression
+    | expression (JugdeEqual | AdressEqual | JugdeNotEqual | Greater | GreaterEqual | Lesser | LesserEqual) expression
+    | listBody
+    | mapBody
     | functionCall
     ;
 
