@@ -66,6 +66,18 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 */
 	void exitTupletExperssion(MiderCodeParser.TupletExperssionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code tripletsExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
+	 * @param ctx the parse tree
+	 */
+	void enterTripletsExperssion(MiderCodeParser.TripletsExperssionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code tripletsExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
+	 * @param ctx the parse tree
+	 */
+	void exitTripletsExperssion(MiderCodeParser.TripletsExperssionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code glissandoExperssion}
 	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
@@ -141,6 +153,16 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTuplet(MiderCodeParser.TupletContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#triplets}.
+	 * @param ctx the parse tree
+	 */
+	void enterTriplets(MiderCodeParser.TripletsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#triplets}.
+	 * @param ctx the parse tree
+	 */
+	void exitTriplets(MiderCodeParser.TripletsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#glissando}.
 	 * @param ctx the parse tree
@@ -262,6 +284,16 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 */
 	void exitTrackSpeedConfig(MiderCodeParser.TrackSpeedConfigContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackTimesignatureConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackTimesignatureConfig(MiderCodeParser.TrackTimesignatureConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackTimesignatureConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackTimesignatureConfig(MiderCodeParser.TrackTimesignatureConfigContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#trackTonalityConfig}.
 	 * @param ctx the parse tree
 	 */
@@ -301,6 +333,26 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTrackCustomConfig(MiderCodeParser.TrackCustomConfigContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#hexData}.
+	 * @param ctx the parse tree
+	 */
+	void enterHexData(MiderCodeParser.HexDataContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#hexData}.
+	 * @param ctx the parse tree
+	 */
+	void exitHexData(MiderCodeParser.HexDataContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#hexContent}.
+	 * @param ctx the parse tree
+	 */
+	void enterHexContent(MiderCodeParser.HexContentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#hexContent}.
+	 * @param ctx the parse tree
+	 */
+	void exitHexContent(MiderCodeParser.HexContentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#program}.
 	 * @param ctx the parse tree
@@ -397,6 +449,36 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionBody(MiderCodeParser.FunctionBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#listBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterListBody(MiderCodeParser.ListBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#listBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitListBody(MiderCodeParser.ListBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#mapBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterMapBody(MiderCodeParser.MapBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#mapBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitMapBody(MiderCodeParser.MapBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#primary}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrimary(MiderCodeParser.PrimaryContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#primary}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrimary(MiderCodeParser.PrimaryContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#expression}.
 	 * @param ctx the parse tree

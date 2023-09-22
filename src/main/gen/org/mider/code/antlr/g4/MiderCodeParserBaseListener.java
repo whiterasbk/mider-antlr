@@ -77,6 +77,18 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTripletsExperssion(MiderCodeParser.TripletsExperssionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTripletsExperssion(MiderCodeParser.TripletsExperssionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterGlissandoExperssion(MiderCodeParser.GlissandoExperssionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -156,6 +168,18 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTuplet(MiderCodeParser.TupletContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTriplets(MiderCodeParser.TripletsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTriplets(MiderCodeParser.TripletsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -305,6 +329,18 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTrackTimesignatureConfig(MiderCodeParser.TrackTimesignatureConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackTimesignatureConfig(MiderCodeParser.TrackTimesignatureConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -348,6 +384,30 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTrackCustomConfig(MiderCodeParser.TrackCustomConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterHexData(MiderCodeParser.HexDataContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitHexData(MiderCodeParser.HexDataContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterHexContent(MiderCodeParser.HexContentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitHexContent(MiderCodeParser.HexContentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -456,6 +516,42 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctionBody(MiderCodeParser.FunctionBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterListBody(MiderCodeParser.ListBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitListBody(MiderCodeParser.ListBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMapBody(MiderCodeParser.MapBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMapBody(MiderCodeParser.MapBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrimary(MiderCodeParser.PrimaryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrimary(MiderCodeParser.PrimaryContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

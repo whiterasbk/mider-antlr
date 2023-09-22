@@ -45,6 +45,13 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTupletExperssion(MiderCodeParser.TupletExperssionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code tripletsExperssion}
+	 * labeled alternative in {@link MiderCodeParser#midercode}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTripletsExperssion(MiderCodeParser.TripletsExperssionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code glissandoExperssion}
 	 * labeled alternative in {@link MiderCodeParser#midercode}.
 	 * @param ctx the parse tree
@@ -89,6 +96,12 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTuplet(MiderCodeParser.TupletContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#triplets}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTriplets(MiderCodeParser.TripletsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#glissando}.
 	 * @param ctx the parse tree
@@ -162,6 +175,12 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTrackSpeedConfig(MiderCodeParser.TrackSpeedConfigContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#trackTimesignatureConfig}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTrackTimesignatureConfig(MiderCodeParser.TrackTimesignatureConfigContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#trackTonalityConfig}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -185,6 +204,18 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTrackCustomConfig(MiderCodeParser.TrackCustomConfigContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#hexData}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHexData(MiderCodeParser.HexDataContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#hexContent}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHexContent(MiderCodeParser.HexContentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#program}.
 	 * @param ctx the parse tree
@@ -242,6 +273,24 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionBody(MiderCodeParser.FunctionBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#listBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListBody(MiderCodeParser.ListBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#mapBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMapBody(MiderCodeParser.MapBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#primary}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrimary(MiderCodeParser.PrimaryContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#expression}.
 	 * @param ctx the parse tree
