@@ -17,6 +17,18 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTracks(MiderCodeParser.TracksContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTracks(MiderCodeParser.TracksContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterTrack(MiderCodeParser.TrackContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -24,6 +36,30 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTrack(MiderCodeParser.TrackContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScopeBlock(MiderCodeParser.ScopeBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScopeBlock(MiderCodeParser.ScopeBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackBody(MiderCodeParser.TrackBodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackBody(MiderCodeParser.TrackBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -113,18 +149,6 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCommentExperssion(MiderCodeParser.CommentExperssionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCommentExperssion(MiderCodeParser.CommentExperssionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterNote(MiderCodeParser.NoteContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -209,25 +233,25 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRestBase(MiderCodeParser.RestBaseContext ctx) { }
+	@Override public void enterRestClone(MiderCodeParser.RestCloneContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRestBase(MiderCodeParser.RestBaseContext ctx) { }
+	@Override public void exitRestClone(MiderCodeParser.RestCloneContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNoteBase(MiderCodeParser.NoteBaseContext ctx) { }
+	@Override public void enterNoteClone(MiderCodeParser.NoteCloneContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNoteBase(MiderCodeParser.NoteBaseContext ctx) { }
+	@Override public void exitNoteClone(MiderCodeParser.NoteCloneContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -245,13 +269,37 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComment(MiderCodeParser.CommentContext ctx) { }
+	@Override public void enterNoteListClone(MiderCodeParser.NoteListCloneContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComment(MiderCodeParser.CommentContext ctx) { }
+	@Override public void exitNoteListClone(MiderCodeParser.NoteListCloneContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterChordMode(MiderCodeParser.ChordModeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitChordMode(MiderCodeParser.ChordModeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGlobalConfig(MiderCodeParser.GlobalConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGlobalConfig(MiderCodeParser.GlobalConfigContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -276,6 +324,18 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTrackHeader(MiderCodeParser.TrackHeaderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInlineTrackHeader(MiderCodeParser.InlineTrackHeaderContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInlineTrackHeader(MiderCodeParser.InlineTrackHeaderContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -437,6 +497,18 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBlock(MiderCodeParser.BlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlock(MiderCodeParser.BlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDefineStatement(MiderCodeParser.DefineStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -468,6 +540,30 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLoopStatement(MiderCodeParser.LoopStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterForInStatement(MiderCodeParser.ForInStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitForInStatement(MiderCodeParser.ForInStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIfStatement(MiderCodeParser.IfStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfStatement(MiderCodeParser.IfStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

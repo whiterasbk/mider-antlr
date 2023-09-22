@@ -43,6 +43,10 @@ fragment Fu: 'F';
 fragment Cl: 'c';
 fragment Cu: 'C';
 
+// scope
+EnterScope: '{';
+ExitScope: '}';
+
 // connector
 GlissandoConnector: Equal | ApproximatelyEqual;
 ChordConnector: Colon;
@@ -59,7 +63,6 @@ PitchPrefix
     | Doller | '♭'
     | At | '♮'
     ;
-PitchSuffix: Apostrophe;
 OctaveSuffix: SingleDigital;
 MoveOctaveSuffix
     : '↓' | Ll | Lu
@@ -72,14 +75,14 @@ DurationSuffix
     | (Slash SingleDigital) +
     | ((Xl | Xu) SingleDigital) +
     ;
-VelocitySuffix: Percent SingleDigital;
+VelocitySuffix: Percent SingleDigital+;
 RepeatSuffix: Star SingleDigital;
 ArpeggioSuffix: '↟' | '↡' | '︴';
 
 // ignore
 fragment NewLine: '\t\r' | '\n';
 fragment Space: ' ';
-Comment: '/*'  .*?  '*/'  {skip();};
+Comment: '/*'  .*?  '*/'  -> skip;
 Blank: (Space | NewLine)+ -> skip;
 SectionLine: MiderOr -> skip;
 
@@ -95,14 +98,25 @@ Clone: Tilde;
 fragment SingleDigital: [0-9];
 
 // mode
+
+InlineTrackStart: '&>' -> pushMode(Track); // &track
 TrackStart: AngleBracketRight -> pushMode(Track);
+
 LyricStart: '[' -> pushMode(LyricMode);
 ProgramStart: '(=' -> pushMode(Program);
 HexStart: '`' -> pushMode(Hex);
+ChordModeStart: '<|' -> pushMode(Chord);
+GlobalConfigStrat: '<%' -> pushMode(GlobalConfig);
 
 mode LyricMode;
     LyricContent: ~('[' | ']')+;
     LyricEnd: ']' -> popMode;
+
+mode GlobalConfig;
+GlobalConfigEnd: '%>' -> popMode;
+
+mode Chord;
+ChordModeEnd: '|>' -> popMode;
 
 mode Track;
 TrackTreble: Gl;
@@ -125,6 +139,7 @@ mode Program;
 LetKeyWord: 'let';
 LoopKeyWord: 'loop';
 InKeyWord: 'in';
+IsKeyWord: 'is';
 IfKeyWord: 'if';
 ElseKeyWord: 'else';
 ForKeyWord: 'for';
@@ -132,24 +147,26 @@ WhileKeyWord: 'while';
 ReturnKeyWord: 'return';
 BreakKeyWord: 'break';
 ContinueKeyWord: 'continue';
-//ClassKeyWord: 'class';
-//NewKeyWord: 'new';//
-//ThisKeyWord: 'this';
-//SuperKeyWord: 'super';
+ImportKeyWord: 'import';
+ClassKeyWord: 'class';
+//NewKeyWord: 'new';
+ThisKeyWord: 'this';
+StaticKeyWord: 'static';
+SuperKeyWord: 'super';
 NullKeyWord: 'null';
 TrueKeyWord: 'true';
 FalseKeyWord: 'false';
 FunctionDefKeyWord: 'fun';
 
-LogicAnd: '&';
-LogicOr: '|';
-Caret: '^';
+
 AdressEqual: '===';
 Xor: '^^' | '⊕';
 And: '&&';
 Or: '||';
 JugdeNotEqual: '!=';
 JugdeEqual: '==';
+ShiftLeft: '<<';
+ShiftRight: '>>';
 GreaterEqual: '>=';
 LesserEqual: '<=';
 AssignPlusEqual: '+=';
@@ -175,7 +192,12 @@ Add: '+';
 Sub: '-';
 Mod: '%';
 Not: '!';
+LogicAnd: '&';
+LogicOr: '|';
+Caret: '^';
 AssignEqual: '=';
+
+//MidercodeInsideProgramStart -> pushMode(Track);
 
 Integer: [0-9]+;
 Float: [0-9]+ '.' [0-9]+;
@@ -194,7 +216,6 @@ fragment StringEscapeSequence
 fragment HexDigit
     : [0-9a-fA-F]
     ;
-
 
 mode Hex;
 

@@ -3,65 +3,68 @@ parser grammar MiderCodeParser;
 
 options { tokenVocab = MiderCodeLexer; }
 // todo 简谱模式，和弦模式
-// track: trackHeader? (midercode | program)+ EOF;
-track: (trackHeader | midercode | program | hexData)+ EOF;
+//tracks: globalConfig? (trackHeader | midercode | program | hexData | chordMode | scope)+ EOF;
+
+tracks: globalConfig? track* EOF;
+
+track
+    : trackHeader* trackBody+ (inlineTrackHeader trackBody+)*
+    ;
+scopeBlock: trackHeader EnterScope trackBody* ExitScope;
+trackBody: midercode | program | hexData | chordMode | scopeBlock;
 
 midercode
-    : note lyric?              # noteExperssion
-    | chord lyric?             # chordExperssion
-    | rest                     # restExperssion
-    | tuplet                   # tupletExperssion
-    | triplets                 # tripletsExperssion
-    | glissando                # glissandoExperssion
-    | appoggiatura             # appoggiaturaExperssion
-    | comment                  # commentExperssion
+    : note lyric? noteClone*               # noteExperssion
+    | chord lyric? noteListClone*          # chordExperssion
+    | rest restClone*                      # restExperssion
+    | tuplet noteListClone*                # tupletExperssion
+    | triplets noteListClone*              # tripletsExperssion
+    | glissando noteListClone*             # glissandoExperssion
+    | appoggiatura noteListClone*          # appoggiaturaExperssion
     ;
 
 note
-    : (PitchPrefix)* NoteName (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix | RepeatSuffix | PitchSuffix)*
-    | note noteBase+? // todo fix: if this branch attached, must be tarck -> midercode -> note -> noteBase, else error
+    : (PitchPrefix)* NoteName (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix | RepeatSuffix)*
     ;
 chord
     : note (ChordConnector note) + (ArpeggioSuffix)?
-    | note (ChordConnector (note | chordTailBase)) + (ArpeggioSuffix)?
-    // | chord noteListBase+ // unreachable
+    | note (ChordConnector (note | chordTailBase))+ (ArpeggioSuffix)?
     ;
-rest
-    : (RestNote) DurationSuffix*
-    | rest restBase+
-    ;
+rest: (RestNote) DurationSuffix*;
 tuplet
     : note (TupletConnector note)+
     | rest (TupletConnector rest)+
-    // | tuplet noteListBase+ // unreachable
     ;
-
 triplets
-    : note (ChordConnector note)+
+    : note (TripletsConnector note)+
     ;
-
 glissando
     : note (GlissandoConnector note)+
-    // | glissando noteListBase+ // unreachable
     ;
 appoggiatura
     : note AppoggiaturaConnector note Ttail?
-    // | appoggiatura noteListBase+ // unreachable
     ;
 // todo 三连音 q 表示前一个和弦
 
-restBase: Clone (RepeatSuffix | DurationSuffix)+;
-noteBase: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | RepeatSuffix | DurationSuffix | VelocitySuffix | PitchSuffix)*;
-chordTailBase: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix | PitchSuffix)*;
-// noteListBase: CloneActionOperator (RepeatSuffix | DurationSuffix | VelocitySuffix | OctaveSuffix)*; // unreachable
+restClone: Clone (RepeatSuffix | DurationSuffix)+;
+noteClone: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | RepeatSuffix | DurationSuffix | VelocitySuffix)*;
+chordTailBase: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix)*;
+noteListClone: Clone (RepeatSuffix | DurationSuffix | VelocitySuffix | OctaveSuffix)*; // unreachable
 
-comment: Comment;
+// reggion chord mode
+chordMode: ChordModeStart ChordModeEnd;
+// endregion
+
+// reggion chord mode
+globalConfig: GlobalConfigStrat GlobalConfigEnd;
+// endregion
 
 // lyric
 lyric: LyricStart LyricContent LyricEnd;
 
 // region track
 trackHeader: TrackStart sigleTrackConfig (TrackConfigSeperator sigleTrackConfig)*? TrackEnd;
+inlineTrackHeader: InlineTrackStart sigleTrackConfig (TrackConfigSeperator sigleTrackConfig)*? TrackEnd;
 sigleTrackConfig
     : trackBpmConfig
     | trackOctaveAndDurationConfig
@@ -91,7 +94,6 @@ hexContent
     ;
 // endregion
 
-
 // region program
 program: ProgramStart programBody* ProgramEnd;
 
@@ -101,10 +103,16 @@ programBody
     | expression
     ;
 
+block
+    : BracesLeft programBody? BracesRight
+    ;
+
 programStatement
-    : LetKeyWord SymbolID AssignEqual expression                          # defineStatement
-    | SymbolID AssignEqual expression                                     # assignEqualStatement
-    | LoopKeyWord expression? BracesLeft programBody? BracesRight         # loopStatement
+    : LetKeyWord SymbolID AssignEqual expression                                                            # defineStatement
+    | SymbolID AssignEqual expression                                                                       # assignEqualStatement
+    | LoopKeyWord expression? block                                                                         # loopStatement
+    | ForKeyWord ParenthesesLeft SymbolID InKeyWord expression ParenthesesRight block                       # forInStatement
+    | IfKeyWord expression block (ElseKeyWord IfKeyWord expression block)* (ElseKeyWord block)?             # ifStatement
     ;
 
 functionDef

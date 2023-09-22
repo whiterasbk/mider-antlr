@@ -11,11 +11,29 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#tracks}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTracks(MiderCodeParser.TracksContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#track}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTrack(MiderCodeParser.TrackContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#scopeBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScopeBlock(MiderCodeParser.ScopeBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#trackBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTrackBody(MiderCodeParser.TrackBodyContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code noteExperssion}
 	 * labeled alternative in {@link MiderCodeParser#midercode}.
@@ -66,13 +84,6 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAppoggiaturaExperssion(MiderCodeParser.AppoggiaturaExperssionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code commentExperssion}
-	 * labeled alternative in {@link MiderCodeParser#midercode}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCommentExperssion(MiderCodeParser.CommentExperssionContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#note}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -115,17 +126,17 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAppoggiatura(MiderCodeParser.AppoggiaturaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MiderCodeParser#restBase}.
+	 * Visit a parse tree produced by {@link MiderCodeParser#restClone}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRestBase(MiderCodeParser.RestBaseContext ctx);
+	T visitRestClone(MiderCodeParser.RestCloneContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MiderCodeParser#noteBase}.
+	 * Visit a parse tree produced by {@link MiderCodeParser#noteClone}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNoteBase(MiderCodeParser.NoteBaseContext ctx);
+	T visitNoteClone(MiderCodeParser.NoteCloneContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#chordTailBase}.
 	 * @param ctx the parse tree
@@ -133,11 +144,23 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitChordTailBase(MiderCodeParser.ChordTailBaseContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MiderCodeParser#comment}.
+	 * Visit a parse tree produced by {@link MiderCodeParser#noteListClone}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitComment(MiderCodeParser.CommentContext ctx);
+	T visitNoteListClone(MiderCodeParser.NoteListCloneContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#chordMode}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitChordMode(MiderCodeParser.ChordModeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#globalConfig}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGlobalConfig(MiderCodeParser.GlobalConfigContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#lyric}.
 	 * @param ctx the parse tree
@@ -150,6 +173,12 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTrackHeader(MiderCodeParser.TrackHeaderContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#inlineTrackHeader}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInlineTrackHeader(MiderCodeParser.InlineTrackHeaderContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#sigleTrackConfig}.
 	 * @param ctx the parse tree
@@ -229,6 +258,12 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgramBody(MiderCodeParser.ProgramBodyContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlock(MiderCodeParser.BlockContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code defineStatement}
 	 * labeled alternative in {@link MiderCodeParser#programStatement}.
 	 * @param ctx the parse tree
@@ -249,6 +284,20 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLoopStatement(MiderCodeParser.LoopStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code forInStatement}
+	 * labeled alternative in {@link MiderCodeParser#programStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForInStatement(MiderCodeParser.ForInStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ifStatement}
+	 * labeled alternative in {@link MiderCodeParser#programStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfStatement(MiderCodeParser.IfStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#functionDef}.
 	 * @param ctx the parse tree
