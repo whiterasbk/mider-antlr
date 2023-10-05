@@ -23,11 +23,17 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTrack(MiderCodeParser.TrackContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MiderCodeParser#scopeBlock}.
+	 * Visit a parse tree produced by {@link MiderCodeParser#outterScopeBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitScopeBlock(MiderCodeParser.ScopeBlockContext ctx);
+	T visitOutterScopeBlock(MiderCodeParser.OutterScopeBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#innerScopeBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInnerScopeBlock(MiderCodeParser.InnerScopeBlockContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#trackBody}.
 	 * @param ctx the parse tree
@@ -180,6 +186,18 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInlineTrackHeader(MiderCodeParser.InlineTrackHeaderContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#trackDefault}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTrackDefault(MiderCodeParser.TrackDefaultContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiderCodeParser#trackConfig}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTrackConfig(MiderCodeParser.TrackConfigContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#sigleTrackConfig}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -215,12 +233,6 @@ public interface MiderCodeParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MiderCodeParser#trackVelocityConfig}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiderCodeParser#trackInstrumentConfig}.
 	 * @param ctx the parse tree

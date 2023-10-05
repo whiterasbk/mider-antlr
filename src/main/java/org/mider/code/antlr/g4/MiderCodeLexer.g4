@@ -63,7 +63,7 @@ PitchPrefix
     | Doller | '♭'
     | At | '♮'
     ;
-OctaveSuffix: SingleDigital;
+AbsoluteOctaveSuffix: SingleDigital;
 MoveOctaveSuffix
     : '↓' | Ll | Lu
     | '↑' | Hl | Hu
@@ -73,10 +73,16 @@ DurationSuffix
     | Minus +
     | Dot +
     | (Slash SingleDigital) +
-    | ((Xl | Xu) SingleDigital) +
+    | (Star SingleDigital) +
     ;
-VelocitySuffix: Percent SingleDigital+;
-RepeatSuffix: Star SingleDigital;
+VelocitySuffix
+    : Percent 'on' SingleDigital+
+    | Percent 'off' SingleDigital+
+    | Percent 'off' SingleDigital+ Percent 'on' SingleDigital+
+    | Percent 'on' SingleDigital+ Percent 'off' SingleDigital+
+    | Percent SingleDigital+
+    ;
+RepeatSuffix: ('x' | 'X') SingleDigital;
 ArpeggioSuffix: '↟' | '↡' | '︴';
 
 // ignore
@@ -99,8 +105,8 @@ fragment SingleDigital: [0-9];
 
 // mode
 
-InlineTrackStart: '&>' -> pushMode(Track); // &track
-TrackStart: AngleBracketRight -> pushMode(Track);
+InlineTrackStart: '&'? '>' -> pushMode(Track); // &track
+TrackStart: Space* NewLine+ Space* '>' -> pushMode(Track);
 
 LyricStart: '[' -> pushMode(LyricMode);
 ProgramStart: '(=' -> pushMode(Program);
@@ -124,15 +130,18 @@ TrackBass: Fl;
 TrackAlto: Cl;
 TrackConfigSeperator: Semicolon;
 TrackBPMInteger: SingleDigital+;
-TrackOcatve: OctaveSuffix | MoveOctaveSuffix;
+TrackAbsoluteOcatve: AbsoluteOctaveSuffix;
+TrackMoveOcatve: MoveOctaveSuffix;
 TrackDuration: DurationSuffix;
 TrackSpeed: SingleDigital+ (Xu | Xl);
 TrackSpace: Space -> skip;
 TrackTonality: ('b' | '#')? [A-G] (('m' | 'maj' | 'major') | ('min' | 'minor'))?;
-TrackVelocity: SingleDigital+ Percent;
+TrackBaseNotePitch: ('b' | '#' | '$')+;
+TrackVelocity: VelocitySuffix;
 TrackTimesignature: SingleDigital Slash SingleDigital;
 TrackUseInstrumnt: 'use' Colon [a-zA-Z]([a-zA-Z0-9_])*;
 TrackPair: [a-zA-Z][a-zA-Z_0-9]* Equal [a-zA-Z_0-9]+ (Comma [a-zA-Z_0-9]+)*?;
+TrackDefaultCnofig: 'default';
 TrackEnd: AngleBracketRight -> popMode;
 
 mode Program;

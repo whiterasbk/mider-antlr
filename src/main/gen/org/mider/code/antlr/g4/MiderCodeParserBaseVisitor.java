@@ -32,7 +32,14 @@ public class MiderCodeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> i
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitScopeBlock(MiderCodeParser.ScopeBlockContext ctx) { return visitChildren(ctx); }
+	@Override public T visitOutterScopeBlock(MiderCodeParser.OutterScopeBlockContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitInnerScopeBlock(MiderCodeParser.InnerScopeBlockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -207,6 +214,20 @@ public class MiderCodeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> i
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitTrackDefault(MiderCodeParser.TrackDefaultContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTrackConfig(MiderCodeParser.TrackConfigContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitSigleTrackConfig(MiderCodeParser.SigleTrackConfigContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -243,13 +264,6 @@ public class MiderCodeParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> i
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

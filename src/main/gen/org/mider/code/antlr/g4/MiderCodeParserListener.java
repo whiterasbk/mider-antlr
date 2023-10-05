@@ -28,15 +28,25 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 */
 	void exitTrack(MiderCodeParser.TrackContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MiderCodeParser#scopeBlock}.
+	 * Enter a parse tree produced by {@link MiderCodeParser#outterScopeBlock}.
 	 * @param ctx the parse tree
 	 */
-	void enterScopeBlock(MiderCodeParser.ScopeBlockContext ctx);
+	void enterOutterScopeBlock(MiderCodeParser.OutterScopeBlockContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MiderCodeParser#scopeBlock}.
+	 * Exit a parse tree produced by {@link MiderCodeParser#outterScopeBlock}.
 	 * @param ctx the parse tree
 	 */
-	void exitScopeBlock(MiderCodeParser.ScopeBlockContext ctx);
+	void exitOutterScopeBlock(MiderCodeParser.OutterScopeBlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#innerScopeBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterInnerScopeBlock(MiderCodeParser.InnerScopeBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#innerScopeBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitInnerScopeBlock(MiderCodeParser.InnerScopeBlockContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#trackBody}.
 	 * @param ctx the parse tree
@@ -292,6 +302,26 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 */
 	void exitInlineTrackHeader(MiderCodeParser.InlineTrackHeaderContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackDefault}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackDefault(MiderCodeParser.TrackDefaultContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackDefault}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackDefault(MiderCodeParser.TrackDefaultContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiderCodeParser#trackConfig}.
+	 * @param ctx the parse tree
+	 */
+	void enterTrackConfig(MiderCodeParser.TrackConfigContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiderCodeParser#trackConfig}.
+	 * @param ctx the parse tree
+	 */
+	void exitTrackConfig(MiderCodeParser.TrackConfigContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#sigleTrackConfig}.
 	 * @param ctx the parse tree
 	 */
@@ -351,16 +381,6 @@ public interface MiderCodeParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MiderCodeParser#trackVelocityConfig}.
-	 * @param ctx the parse tree
-	 */
-	void enterTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MiderCodeParser#trackVelocityConfig}.
-	 * @param ctx the parse tree
-	 */
-	void exitTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiderCodeParser#trackInstrumentConfig}.
 	 * @param ctx the parse tree

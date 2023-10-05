@@ -10,8 +10,9 @@ tracks: globalConfig? track* EOF;
 track
     : trackHeader* trackBody+ (inlineTrackHeader trackBody+)*
     ;
-scopeBlock: trackHeader EnterScope trackBody* ExitScope;
-trackBody: midercode | program | hexData | chordMode | scopeBlock;
+outterScopeBlock: (inlineTrackHeader)? EnterScope innerScopeBlock* ExitScope;
+innerScopeBlock: (trackHeader | inlineTrackHeader) EnterScope trackBody* ExitScope;
+trackBody: midercode | program | hexData | chordMode | outterScopeBlock;
 
 midercode
     : note lyric? noteClone*               # noteExperssion
@@ -24,7 +25,7 @@ midercode
     ;
 
 note
-    : (PitchPrefix)* NoteName (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix | RepeatSuffix)*
+    : (PitchPrefix)* NoteName AbsoluteOctaveSuffix? VelocitySuffix? RepeatSuffix? (MoveOctaveSuffix | DurationSuffix)*
     ;
 chord
     : note (ChordConnector note) + (ArpeggioSuffix)?
@@ -47,9 +48,9 @@ appoggiatura
 // todo 三连音 q 表示前一个和弦
 
 restClone: Clone (RepeatSuffix | DurationSuffix)+;
-noteClone: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | RepeatSuffix | DurationSuffix | VelocitySuffix)*;
-chordTailBase: (PitchPrefix)* (Clone | ModifyPitchBase) (MoveOctaveSuffix | OctaveSuffix | DurationSuffix | VelocitySuffix)*;
-noteListClone: Clone (RepeatSuffix | DurationSuffix | VelocitySuffix | OctaveSuffix)*; // unreachable
+noteClone: (PitchPrefix)* (Clone | ModifyPitchBase) AbsoluteOctaveSuffix? VelocitySuffix? RepeatSuffix? (MoveOctaveSuffix | DurationSuffix)*;
+chordTailBase: (PitchPrefix)* (Clone | ModifyPitchBase) AbsoluteOctaveSuffix? VelocitySuffix? (MoveOctaveSuffix | DurationSuffix)*;
+noteListClone: Clone AbsoluteOctaveSuffix? VelocitySuffix? (RepeatSuffix | DurationSuffix)*; // unreachable
 
 // reggion chord mode
 chordMode: ChordModeStart ChordModeEnd;
@@ -63,25 +64,29 @@ globalConfig: GlobalConfigStrat GlobalConfigEnd;
 lyric: LyricStart LyricContent LyricEnd;
 
 // region track
-trackHeader: TrackStart sigleTrackConfig (TrackConfigSeperator sigleTrackConfig)*? TrackEnd;
-inlineTrackHeader: InlineTrackStart sigleTrackConfig (TrackConfigSeperator sigleTrackConfig)*? TrackEnd;
+trackHeader: TrackStart (trackDefault | trackConfig) TrackEnd;
+inlineTrackHeader: InlineTrackStart (trackDefault | trackConfig) TrackEnd;
+
+trackDefault: TrackDefaultCnofig;
+trackConfig: sigleTrackConfig (TrackConfigSeperator sigleTrackConfig)*?;
+
 sigleTrackConfig
     : trackBpmConfig
     | trackOctaveAndDurationConfig
     | trackTimesignatureConfig
     | trackSpeedConfig
     | trackTonalityConfig
-    | trackVelocityConfig
+//    | trackVelocityConfig
     | trackInstrumentConfig
     | trackCustomConfig
     ;
 
 trackBpmConfig: TrackBPMInteger;
-trackOctaveAndDurationConfig: (TrackTreble | TrackBass | TrackAlto) (TrackOcatve | TrackDuration)*?;
+trackOctaveAndDurationConfig: TrackBaseNotePitch? (TrackTreble | TrackBass | TrackAlto) TrackAbsoluteOcatve? TrackVelocity? (TrackMoveOcatve | TrackDuration)*?;
 trackSpeedConfig: TrackSpeed;
 trackTimesignatureConfig: TrackTimesignature;
 trackTonalityConfig: TrackTonality;
-trackVelocityConfig: TrackVelocity;
+//trackVelocityConfig: TrackVelocity;
 trackInstrumentConfig: TrackUseInstrumnt;
 trackCustomConfig: TrackPair;
 // endregion

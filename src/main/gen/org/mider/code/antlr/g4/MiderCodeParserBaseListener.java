@@ -41,13 +41,25 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterScopeBlock(MiderCodeParser.ScopeBlockContext ctx) { }
+	@Override public void enterOutterScopeBlock(MiderCodeParser.OutterScopeBlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitScopeBlock(MiderCodeParser.ScopeBlockContext ctx) { }
+	@Override public void exitOutterScopeBlock(MiderCodeParser.OutterScopeBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInnerScopeBlock(MiderCodeParser.InnerScopeBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInnerScopeBlock(MiderCodeParser.InnerScopeBlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -341,6 +353,30 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTrackDefault(MiderCodeParser.TrackDefaultContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackDefault(MiderCodeParser.TrackDefaultContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTrackConfig(MiderCodeParser.TrackConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTrackConfig(MiderCodeParser.TrackConfigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSigleTrackConfig(MiderCodeParser.SigleTrackConfigContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -408,18 +444,6 @@ public class MiderCodeParserBaseListener implements MiderCodeParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTrackTonalityConfig(MiderCodeParser.TrackTonalityConfigContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTrackVelocityConfig(MiderCodeParser.TrackVelocityConfigContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
